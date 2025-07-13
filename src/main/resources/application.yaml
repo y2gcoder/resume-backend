@@ -1,0 +1,5 @@
+spring:
+  application.name: resume
+  docker:
+    compose:
+      lifecycle-management: start_only
