@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.0.4">
+  <diagram name="페이지-1" id="ovqG7eJjGtVBZcDp9AuK">
+    <mxGraphModel dx="1306" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-1" value="회원" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-2" value="이력서" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="296" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-3" value="섹션" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="296" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-4" value="템플릿" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="504" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-11" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="MCl1YI4pZJBMMllPpqMn-1" target="MCl1YI4pZJBMMllPpqMn-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="340" as="sourcePoint" />
+            <mxPoint x="414" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-12" value="1" style="resizable=0;html=1;whiteSpace=wrap;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-11">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="-10" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-13" value="0..N" style="resizable=0;html=1;whiteSpace=wrap;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-11">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-14" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="MCl1YI4pZJBMMllPpqMn-2" target="MCl1YI4pZJBMMllPpqMn-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="340" as="sourcePoint" />
+            <mxPoint x="490" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-15" value="1" style="resizable=0;html=1;whiteSpace=wrap;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-14">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="-11" y="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-16" value="1" style="resizable=0;html=1;whiteSpace=wrap;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-14">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-17" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="MCl1YI4pZJBMMllPpqMn-2" target="MCl1YI4pZJBMMllPpqMn-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="340" as="sourcePoint" />
+            <mxPoint x="490" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-18" value="1" style="resizable=0;html=1;whiteSpace=wrap;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-17">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MCl1YI4pZJBMMllPpqMn-19" value="1..N" style="resizable=0;html=1;whiteSpace=wrap;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="MCl1YI4pZJBMMllPpqMn-17">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
