@@ -46,7 +46,26 @@
 
 ### 회원
 
-### 이력서
+### 이력서(Resume)
+_Entity_
+#### 속성
+- `title`: 제목
+- `name`: 이름
+- `email`: 이메일
+- `callingCode`: 국가 전화 코드
+- `nationalNumber`: 국내 전화 번호
+- `subtitle`: 부제
+- `profileImageUrl`: 프로필 이미지 URL
+- `bio`: 한줄 소개
+
+#### 행위
+- `create()`: 이력서 생성: title, name, email, callingCode, nationalNumber
+- `updateSubtitle()`
+- `updateProfileImageUrl()`
+- `updateBio()`
+
+#### 규칙
+- 이력서를 생성할 때 제목, 이름, 이메일, 국가 전화 코드, 국내 전화 코드는 필수
 
 ### 섹션
 

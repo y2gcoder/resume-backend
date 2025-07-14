@@ -27,9 +27,13 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation("io.kotest", "kotest-runner-junit5", "5.9.1")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.3.0")
 }
 
 kotlin {
