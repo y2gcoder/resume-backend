@@ -44,7 +44,41 @@
 
 ---
 
-### 회원
+### 회원(Member)
+_Entity_
+#### 속성
+- `email`: 이메일
+- `nickname`: 닉네임
+- `passwordHash`: 비밀번호(해시)
+- `status`: `MemberStatus`: 회원 상태
+
+#### 행위
+- `register()`: 회원 등록 email, nickname, password, passwordEncoder
+- `activate()`: 등록 완료
+- `deactivate()`: 탈퇴
+- `verifyPassword()`: 비밀번호를 검증한다
+- `changeNickname()`
+- `changePassword()`
+
+#### 규칙
+- 회원 등록 후 회원 상태는 등록 대기
+- 어떤 조건을 만족하면 등록 완료할 수 있다
+- 등록 대기 상태에서만 등록 완료할 수 있다
+- 등록 완료 상태에서만 탈퇴할 수 있다
+- 회원의 비밀번호는 해싱해서 저장한다
+
+### 회원 상태(MemberStatus)
+_Enum_
+#### 상수
+- `PENDING`: 등록 대기
+- `ACTIVE`: 등록 완료
+- `DEACTIVATED`: 탈퇴
+
+### 비밀번호 인코더(PasswordEncoder)
+_Domain Service_
+#### 행위
+- `encode()`: 비밀번호 해싱(암호화)
+- `matches()`: 비밀번호가 일치하는지 확인
 
 ### 이력서(Resume)
 _Entity_
