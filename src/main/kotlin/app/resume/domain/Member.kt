@@ -1,22 +1,20 @@
 package app.resume.domain
 
 class Member private constructor(
-    val email: String,
+    val email: Email,
     var nickname: String,
     var passwordHash: String,
     var status: MemberStatus = MemberStatus.PENDING,
 ) {
     companion object {
         fun register(
-            email: String,
-            nickname: String,
-            password: String,
+            registerRequest: MemberRegisterRequest,
             passwordEncoder: PasswordEncoder,
         ): Member {
             return Member(
-                email = email,
-                nickname = nickname,
-                passwordHash = passwordEncoder.encode(password),
+                email = Email(registerRequest.email),
+                nickname = registerRequest.nickname,
+                passwordHash = passwordEncoder.encode(registerRequest.password),
             )
         }
     }
@@ -44,4 +42,6 @@ class Member private constructor(
     fun changePassword(password: String, passwordEncoder: PasswordEncoder) {
         this.passwordHash = passwordEncoder.encode(password)
     }
+
+    fun isActive() = status == MemberStatus.ACTIVE
 }

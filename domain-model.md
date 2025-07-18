@@ -80,6 +80,15 @@ _Domain Service_
 - `encode()`: 비밀번호 해싱(암호화)
 - `matches()`: 비밀번호가 일치하는지 확인
 
+---
+
+### 이메일
+_Value Object_
+#### 속성
+- `address`: 이메일 주소
+
+---
+
 ### 이력서(Resume)
 _Entity_
 #### 속성

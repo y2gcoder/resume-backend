@@ -14,9 +14,11 @@ class MemberTest : StringSpec({
             override fun matches(password: String, passwordHash: String): Boolean = encode(password) == passwordHash
         }
         member = Member.register(
-            "y2gcoder@gmail.com",
-            "문파관작",
-            "bestpassword",
+            MemberRegisterRequest(
+                "y2gcoder@gmail.com",
+                "문파관작",
+                "bestpassword",
+            ),
             passwordEncoder
         )
     }
@@ -71,5 +73,17 @@ class MemberTest : StringSpec({
         member.changePassword("verybestpassword", passwordEncoder)
 
         member.verifyPassword("verybestpassword", passwordEncoder) shouldBe true
+    }
+
+    "등록 완료 상태 체크" {
+        member.isActive() shouldBe false
+
+        member.activate()
+
+        member.isActive() shouldBe true
+
+        member.deactivate()
+
+        member.isActive() shouldBe false
     }
 })

@@ -3,7 +3,7 @@ package app.resume.domain
 class Resume private constructor(
     val title: String,
     val name: String,
-    val email: String,
+    val email: Email,
     val callingCode: String,
     val nationalNumber: String,
     var subtitle: String? = null,
@@ -18,7 +18,7 @@ class Resume private constructor(
             callingCode: String,
             nationalNumber: String,
         ): Resume {
-            return Resume(title, name, email, callingCode, nationalNumber,)
+            return Resume(title, name, Email(email), callingCode, nationalNumber,)
         }
     }
 

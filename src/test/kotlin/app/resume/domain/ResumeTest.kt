@@ -15,7 +15,7 @@ class ResumeTest : StringSpec({
     "이력서 생성" {
         actual.title shouldBe "title"
         actual.name shouldBe "문파관작"
-        actual.email shouldBe "y2gcoder@gmail.com"
+        actual.email shouldBe Email("y2gcoder@gmail.com")
         actual.callingCode shouldBe "82"
         actual.nationalNumber shouldBe "1012341234"
     }
