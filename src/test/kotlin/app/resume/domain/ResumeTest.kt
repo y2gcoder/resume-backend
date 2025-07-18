@@ -16,8 +16,7 @@ class ResumeTest : StringSpec({
         actual.title shouldBe "title"
         actual.name shouldBe "문파관작"
         actual.email shouldBe Email("y2gcoder@gmail.com")
-        actual.callingCode shouldBe "82"
-        actual.nationalNumber shouldBe "1012341234"
+        actual.phoneNumber shouldBe PhoneNumber("82", "1012341234")
     }
 
     "소제목 변경" {

@@ -47,7 +47,7 @@
 ### 회원(Member)
 _Entity_
 #### 속성
-- `email`: 이메일
+- `email`: `Email` 이메일
 - `nickname`: 닉네임
 - `passwordHash`: 비밀번호(해시)
 - `status`: `MemberStatus`: 회원 상태
@@ -94,9 +94,8 @@ _Entity_
 #### 속성
 - `title`: 제목
 - `name`: 이름
-- `email`: 이메일
-- `callingCode`: 국가 전화 코드
-- `nationalNumber`: 국내 전화 번호
+- `email`: `Email` 이메일
+- `phoneNumber`: `PhoneNumber` 휴대폰번호
 - `subtitle`: 부제
 - `profileImageUrl`: 프로필 이미지 URL
 - `bio`: 한줄 소개
@@ -108,7 +107,15 @@ _Entity_
 - `updateBio()`
 
 #### 규칙
-- 이력서를 생성할 때 제목, 이름, 이메일, 국가 전화 코드, 국내 전화 코드는 필수
+- 이력서를 생성할 때 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
+
+### 휴대폰 번호(PhoneNumber)
+_Value Object_
+#### 속성
+- `callingCode`: 국제 전화 식별 코드
+- `nationalNumber`: 국내 번호
+
+---
 
 ### 섹션
 
