@@ -102,6 +102,10 @@ _Entity_
 
 #### 행위
 - `create()`: 이력서 생성: title, name, email, callingCode, nationalNumber
+- `updateTitle()`
+- `updateName()`
+- `updateEmail()`
+- `updatePhoneNumber()`
 - `updateSubtitle()`
 - `updateProfileImageUrl()`
 - `updateBio()`

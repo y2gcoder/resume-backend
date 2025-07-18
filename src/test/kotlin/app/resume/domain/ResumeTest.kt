@@ -1,5 +1,6 @@
 package app.resume.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -53,5 +54,47 @@ class ResumeTest : StringSpec({
         actual.updateBio(null)
 
         actual.bio shouldBe null
+    }
+
+    "제목 업데이트" {
+        actual.title shouldBe "title"
+
+        actual.updateTitle("new title")
+
+        actual.title shouldBe "new title"
+
+        shouldThrow<IllegalArgumentException> {
+            actual.updateTitle(" ")
+        }
+    }
+
+    "이름 업데이트" {
+        actual.name shouldBe "문파관작"
+
+        actual.updateName("우일신")
+
+        actual.name shouldBe "우일신"
+
+        shouldThrow<IllegalArgumentException> {
+            actual.updateName(" ")
+        }
+    }
+
+    "이메일 업데이트" {
+        actual.email shouldBe Email("y2gcoder@gmail.com")
+
+        val newEmail = Email("y3gcoder@gmail.com")
+
+        actual.updateEmail(newEmail)
+
+        actual.email shouldBe newEmail
+    }
+    
+    "휴대폰 번호 업데이트" {
+        actual.phoneNumber shouldBe PhoneNumber("82", "1012341234")
+        
+        actual.updatePhoneNumber(PhoneNumber("1", "1078907890"))
+        
+        actual.phoneNumber shouldBe PhoneNumber("1", "1078907890")
     }
 })

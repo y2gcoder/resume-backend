@@ -1,10 +1,10 @@
 package app.resume.domain
 
 class Resume private constructor(
-    val title: String,
-    val name: String,
-    val email: Email,
-    val phoneNumber: PhoneNumber,
+    var title: String,
+    var name: String,
+    var email: Email,
+    var phoneNumber: PhoneNumber,
     var subtitle: String? = null,
     var profileImageUrl: String? = null,
     var bio: String? = null,
@@ -17,8 +17,29 @@ class Resume private constructor(
             callingCode: String,
             nationalNumber: String,
         ): Resume {
+            require(!title.isBlank()) { "title can't be blank" }
+            require(!name.isBlank()) { "name can't be blank" }
             return Resume(title, name, Email(email), PhoneNumber(callingCode, nationalNumber))
         }
+    }
+
+    fun updateTitle(title: String) {
+        require(!title.isBlank()) { "title can't be blank" }
+        this.title = title
+    }
+
+    fun updateName(name: String) {
+        require(!name.isBlank()) { "name can't be blank" }
+        this.name = name
+    }
+
+    fun updateEmail(email: Email) {
+        this.email = email
+    }
+
+
+    fun updatePhoneNumber(phoneNumber: PhoneNumber) {
+        this.phoneNumber = phoneNumber
     }
 
     fun updateSubtitle(subtitle: String?) {
