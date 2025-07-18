@@ -6,11 +6,13 @@ import io.kotest.matchers.shouldBe
 
 class ResumeTest : StringSpec({
     val actual = Resume.create(
-        "title",
-        "문파관작",
-        "y2gcoder@gmail.com",
-        "82",
-        "1012341234",
+        ResumeCreateRequest(
+            "title",
+            "문파관작",
+            "y2gcoder@gmail.com",
+            "82",
+            "1012341234",
+        )
     )
 
     "이력서 생성" {
@@ -89,12 +91,12 @@ class ResumeTest : StringSpec({
 
         actual.email shouldBe newEmail
     }
-    
+
     "휴대폰 번호 업데이트" {
         actual.phoneNumber shouldBe PhoneNumber("82", "1012341234")
-        
+
         actual.updatePhoneNumber(PhoneNumber("1", "1078907890"))
-        
+
         actual.phoneNumber shouldBe PhoneNumber("1", "1078907890")
     }
 })

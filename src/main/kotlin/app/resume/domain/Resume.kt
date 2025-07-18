@@ -11,15 +11,16 @@ class Resume private constructor(
 ) {
     companion object {
         fun create(
-            title: String,
-            name: String,
-            email: String,
-            callingCode: String,
-            nationalNumber: String,
+            createRequest: ResumeCreateRequest
         ): Resume {
-            require(!title.isBlank()) { "title can't be blank" }
-            require(!name.isBlank()) { "name can't be blank" }
-            return Resume(title, name, Email(email), PhoneNumber(callingCode, nationalNumber))
+            require(!createRequest.title.isBlank()) { "title can't be blank" }
+            require(!createRequest.name.isBlank()) { "name can't be blank" }
+            return Resume(
+                createRequest.title,
+                createRequest.name,
+                Email(createRequest.email),
+                PhoneNumber(createRequest.callingCode, createRequest.nationalNumber),
+            )
         }
     }
 
