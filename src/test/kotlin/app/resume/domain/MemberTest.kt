@@ -1,5 +1,7 @@
 package app.resume.domain
 
+import app.resume.domain.MemberFixture.createMemberRegisterRequest
+import app.resume.domain.MemberFixture.createPasswordEncoder
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -9,16 +11,9 @@ class MemberTest : StringSpec({
     lateinit var member: Member
 
     beforeEach {
-        passwordEncoder = object : PasswordEncoder {
-            override fun encode(password: String): String = password.uppercase()
-            override fun matches(password: String, passwordHash: String): Boolean = encode(password) == passwordHash
-        }
+        passwordEncoder = createPasswordEncoder()
         member = Member.register(
-            MemberRegisterRequest(
-                "y2gcoder@gmail.com",
-                "문파관작",
-                "bestpassword",
-            ),
+            createMemberRegisterRequest(),
             passwordEncoder
         )
     }

@@ -92,6 +92,7 @@ _Value Object_
 ### 이력서(Resume)
 _Entity_
 #### 속성
+- `writer`: `Member`, 작성자 
 - `title`: 제목
 - `name`: 이름
 - `email`: `Email` 이메일
@@ -101,7 +102,7 @@ _Entity_
 - `bio`: 한줄 소개
 
 #### 행위
-- `create()`: 이력서 생성: title, name, email, callingCode, nationalNumber
+- `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber
 - `updateTitle()`
 - `updateName()`
 - `updateEmail()`
@@ -111,7 +112,7 @@ _Entity_
 - `updateBio()`
 
 #### 규칙
-- 이력서를 생성할 때 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
+- 이력서를 생성할 때 작성자, 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
 
 ### 휴대폰 번호(PhoneNumber)
 _Value Object_

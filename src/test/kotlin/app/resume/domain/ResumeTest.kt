@@ -1,5 +1,6 @@
 package app.resume.domain
 
+import app.resume.domain.MemberFixture.createMember
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -7,6 +8,7 @@ import io.kotest.matchers.shouldBe
 class ResumeTest : StringSpec({
     val actual = Resume.create(
         ResumeCreateRequest(
+            createMember(),
             "title",
             "문파관작",
             "y2gcoder@gmail.com",
@@ -16,6 +18,7 @@ class ResumeTest : StringSpec({
     )
 
     "이력서 생성" {
+        actual.writer.email shouldBe createMember().email
         actual.title shouldBe "title"
         actual.name shouldBe "문파관작"
         actual.email shouldBe Email("y2gcoder@gmail.com")

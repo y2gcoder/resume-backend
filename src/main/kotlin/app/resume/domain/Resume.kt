@@ -1,6 +1,7 @@
 package app.resume.domain
 
 class Resume private constructor(
+    val writer: Member,
     var title: String,
     var name: String,
     var email: Email,
@@ -16,6 +17,7 @@ class Resume private constructor(
             require(!createRequest.title.isBlank()) { "title can't be blank" }
             require(!createRequest.name.isBlank()) { "name can't be blank" }
             return Resume(
+                createRequest.writer,
                 createRequest.title,
                 createRequest.name,
                 Email(createRequest.email),
