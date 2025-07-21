@@ -3,7 +3,9 @@ package app.resume.application.provided
 import app.resume.ResumeApplicationTestConfiguration
 import app.resume.domain.DuplicateEmailException
 import app.resume.domain.MemberFixture
+import app.resume.domain.MemberRegisterRequest
 import app.resume.domain.MemberStatus
+import jakarta.validation.ConstraintViolationException
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -35,4 +37,19 @@ class MemberRegisterTest(
         }
             .isInstanceOf(DuplicateEmailException::class.java)
     }
+
+    @Test
+    fun memberRegisterRequestFail() {
+        extracted(MemberRegisterRequest("y2gcoder@gmail.com", "G", "longsecret"))
+        extracted(MemberRegisterRequest("y2gcoder@gmail.com", "Geun______________________", "longsecret"))
+        extracted(MemberRegisterRequest("y2gcodergmail.com", "y2gcoder", "longsecret"))
+    }
+
+    private fun extracted(invalid: MemberRegisterRequest) {
+        assertThatThrownBy {
+            memberRegister.register(invalid)
+        }.isInstanceOf(ConstraintViolationException::class.java)
+    }
+
+
 }

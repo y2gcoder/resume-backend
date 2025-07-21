@@ -9,8 +9,12 @@ import app.resume.domain.Member
 import app.resume.domain.MemberRegisterRequest
 import app.resume.domain.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.validation.annotation.Validated
 
 @Service
+@Transactional
+@Validated
 class MemberService(
     private val memberRepository: MemberRepository,
     private val emailSender: EmailSender,
