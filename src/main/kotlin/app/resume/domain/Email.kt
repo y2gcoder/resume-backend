@@ -1,5 +1,8 @@
 package app.resume.domain
 
+import jakarta.persistence.Embeddable
+
+@Embeddable
 data class Email(val address: String) {
 
     init {

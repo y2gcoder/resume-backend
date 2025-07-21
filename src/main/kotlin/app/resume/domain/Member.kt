@@ -1,11 +1,30 @@
 package app.resume.domain
 
+import jakarta.persistence.Embedded
+import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import org.hibernate.annotations.NaturalId
+
+@Entity
 class Member private constructor(
-    val email: Email,
+    @Embedded
+    @NaturalId
+    var email: Email,
+
     var nickname: String,
+
     var passwordHash: String,
+
+    @Enumerated(EnumType.STRING)
     var status: MemberStatus = MemberStatus.PENDING,
 ) {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = 0L
+
     companion object {
         fun register(
             registerRequest: MemberRegisterRequest,
