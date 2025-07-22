@@ -6,7 +6,6 @@ import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.transaction.annotation.Transactional
@@ -15,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Import(ResumeApplicationTestConfiguration::class)
 class MemberFinderTest(
-    @Autowired val memberFinder: MemberFinder,
-    @Autowired val memberRegister: MemberRegister,
-    @Autowired val entityManager: EntityManager,
+    val memberFinder: MemberFinder,
+    val memberRegister: MemberRegister,
+    val entityManager: EntityManager,
 ) {
     @Test
     fun find() {
