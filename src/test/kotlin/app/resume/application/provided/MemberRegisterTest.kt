@@ -53,12 +53,12 @@ class MemberRegisterTest(
 
     @Test
     fun memberRegisterRequestFail() {
-        extracted(MemberRegisterRequest("y2gcoder@gmail.com", "G", "longsecret"))
-        extracted(MemberRegisterRequest("y2gcoder@gmail.com", "Geun______________________", "longsecret"))
-        extracted(MemberRegisterRequest("y2gcodergmail.com", "y2gcoder", "longsecret"))
+        checkValidation(MemberRegisterRequest("y2gcoder@gmail.com", "G", "longsecret"))
+        checkValidation(MemberRegisterRequest("y2gcoder@gmail.com", "Geun______________________", "longsecret"))
+        checkValidation(MemberRegisterRequest("y2gcodergmail.com", "y2gcoder", "longsecret"))
     }
 
-    private fun extracted(invalid: MemberRegisterRequest) {
+    private fun checkValidation(invalid: MemberRegisterRequest) {
         assertThatThrownBy {
             memberRegister.register(invalid)
         }.isInstanceOf(ConstraintViolationException::class.java)
