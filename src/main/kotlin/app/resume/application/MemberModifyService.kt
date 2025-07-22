@@ -1,5 +1,6 @@
 package app.resume.application
 
+import app.resume.application.provided.MemberFinder
 import app.resume.application.provided.MemberRegister
 import app.resume.application.required.EmailSender
 import app.resume.application.required.MemberRepository
@@ -15,7 +16,8 @@ import org.springframework.validation.annotation.Validated
 @Service
 @Transactional
 @Validated
-class MemberService(
+class MemberModifyService(
+    private val memberFinder: MemberFinder,
     private val memberRepository: MemberRepository,
     private val emailSender: EmailSender,
     private val passwordEncoder: PasswordEncoder,
@@ -31,9 +33,21 @@ class MemberService(
         memberRepository.save(member)
 
         // post process
-        emailSender.send(member.email, "등록을 완료해주세요", "아래 링크를 클릭해서 등록을 완료해주세요")
+        sendWelcomeEmail(member)
 
         return member
+    }
+
+    override fun activate(memberId: Long): Member {
+        val member = memberFinder.find(memberId)
+
+        member.activate()
+
+        return memberRepository.save(member)
+    }
+
+    private fun sendWelcomeEmail(member: Member) {
+        emailSender.send(member.email, "등록을 완료해주세요", "아래 링크를 클릭해서 등록을 완료해주세요")
     }
 
     private fun checkDuplicateEmail(registerRequest: MemberRegisterRequest) {

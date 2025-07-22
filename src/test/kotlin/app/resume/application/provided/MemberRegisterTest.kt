@@ -5,6 +5,7 @@ import app.resume.domain.DuplicateEmailException
 import app.resume.domain.MemberFixture
 import app.resume.domain.MemberRegisterRequest
 import app.resume.domain.MemberStatus
+import jakarta.persistence.EntityManager
 import jakarta.validation.ConstraintViolationException
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -18,7 +19,8 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Import(ResumeApplicationTestConfiguration::class)
 class MemberRegisterTest(
-    @Autowired private val memberRegister: MemberRegister,
+    @Autowired val memberRegister: MemberRegister,
+    @Autowired val entityManager: EntityManager,
 ) {
     @Test
     fun register() {
@@ -36,6 +38,18 @@ class MemberRegisterTest(
             memberRegister.register(MemberFixture.createMemberRegisterRequest())
         }
             .isInstanceOf(DuplicateEmailException::class.java)
+    }
+
+    @Test
+    fun activate() {
+        var member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
+        entityManager.flush()
+        entityManager.clear()
+
+        member = memberRegister.activate(member.id)
+        entityManager.flush()
+
+        assertThat(member.status).isEqualTo(MemberStatus.ACTIVE)
     }
 
     @Test
