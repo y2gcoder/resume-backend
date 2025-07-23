@@ -2,28 +2,25 @@ package app.resume.domain
 
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
 import org.hibernate.annotations.NaturalId
 
 @Entity
 class Member private constructor(
-    @Embedded
+
+    /** 이메일 **/
     @NaturalId
+    @Embedded
     var email: Email,
 
+    /** 닉네임 **/
     var nickname: String,
 
+    /** 해시된 비밀번호 **/
     var passwordHash: String,
 
-    @Enumerated(EnumType.STRING)
+    /** 회원 상태 **/
     var status: MemberStatus = MemberStatus.PENDING,
-) {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0L
+) : AbstractEntity() {
 
     companion object {
         fun register(
