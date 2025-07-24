@@ -46,6 +46,14 @@ class MemberModifyService(
         return memberRepository.save(member)
     }
 
+    override fun deactivate(memberId: Long): Member {
+        val member = memberFinder.find(memberId)
+
+        member.deactivate()
+
+        return memberRepository.save(member)
+    }
+
     private fun sendWelcomeEmail(member: Member) {
         emailSender.send(member.email, "등록을 완료해주세요", "아래 링크를 클릭해서 등록을 완료해주세요")
     }

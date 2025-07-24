@@ -23,6 +23,9 @@
             <unique-constraint name="UK_MEMBER_EMAIL_ADDRESS">
                 <column-name>email_address</column-name>
             </unique-constraint>
+            <unique-constraint name="UK_MEMBER_DETAIL_ID">
+                <column-name>detail_id</column-name>
+            </unique-constraint>
         </table>
         <attributes>
             <basic name="nickname">
@@ -35,7 +38,27 @@
                 <column nullable="false" length="50"/>
                 <enumerated>STRING</enumerated>
             </basic>
+            <one-to-one name="detail">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-one>
             <embedded name="email"/>
+        </attributes>
+    </entity>
+
+    <!-- MemberDetail.kt의 JPA 애노테이션들을 ORM XML로 변환 -->
+    <entity class="app.resume.domain.member.MemberDetail">
+        <attributes>
+            <basic name="registeredAt">
+                <column nullable="false"/>
+            </basic>
+            <basic name="activatedAt">
+                <column nullable="true"/>
+            </basic>
+            <basic name="deactivatedAt">
+                <column nullable="true"/>
+            </basic>
         </attributes>
     </entity>
 

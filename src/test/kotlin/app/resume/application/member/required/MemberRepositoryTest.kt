@@ -3,6 +3,7 @@ package app.resume.application.member.required
 import app.resume.domain.member.Member
 import app.resume.domain.member.MemberFixture.createMemberRegisterRequest
 import app.resume.domain.member.MemberFixture.createPasswordEncoder
+import app.resume.domain.member.MemberStatus
 import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -31,6 +32,11 @@ class MemberRepositoryTest {
         assertThat(member.id).isNotEqualTo(0L)
 
         entityManager.flush()
+        entityManager.clear()
+
+        val found = memberRepository.findById(member.id) ?: throw NoSuchElementException()
+        assertThat(found.status).isEqualTo(MemberStatus.PENDING)
+        assertThat(member.detail.registeredAt).isNotNull()
     }
 
     @Test

@@ -11,4 +11,6 @@ interface MemberRegister {
     fun register(@Valid registerRequest: MemberRegisterRequest): Member
 
     fun activate(memberId: Long): Member
+
+    fun deactivate(memberId: Long): Member
 }

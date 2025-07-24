@@ -2,6 +2,7 @@ package app.resume.application.member.provided
 
 import app.resume.ResumeApplicationTestConfiguration
 import app.resume.domain.member.DuplicateEmailException
+import app.resume.domain.member.Member
 import app.resume.domain.member.MemberFixture
 import app.resume.domain.member.MemberRegisterRequest
 import app.resume.domain.member.MemberStatus
@@ -41,14 +42,34 @@ class MemberRegisterTest(
 
     @Test
     fun activate() {
-        var member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
-        entityManager.flush()
-        entityManager.clear()
+        var member = registerMember()
 
         member = memberRegister.activate(member.id)
         entityManager.flush()
 
         assertThat(member.status).isEqualTo(MemberStatus.ACTIVE)
+        assertThat(member.detail.activatedAt).isNotNull()
+    }
+
+    @Test
+    fun deactivate() {
+        var member = registerMember()
+
+        memberRegister.activate(member.id)
+        entityManager.flush()
+        entityManager.clear()
+
+        member = memberRegister.deactivate(member.id)
+
+        assertThat(member.status).isEqualTo(MemberStatus.DEACTIVATED)
+        assertThat(member.detail.deactivatedAt).isNotNull()
+    }
+
+    private fun registerMember(): Member {
+        val member = memberRegister.register(MemberFixture.createMemberRegisterRequest())
+        entityManager.flush()
+        entityManager.clear()
+        return member
     }
 
     @Test

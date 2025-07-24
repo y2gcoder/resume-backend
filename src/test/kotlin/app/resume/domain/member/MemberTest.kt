@@ -5,6 +5,7 @@ import app.resume.domain.member.MemberFixture.createPasswordEncoder
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class MemberTest : StringSpec({
     lateinit var passwordEncoder: PasswordEncoder
@@ -20,12 +21,16 @@ class MemberTest : StringSpec({
 
     "회원 등록" {
         member.status shouldBe MemberStatus.PENDING
+        member.detail.registeredAt shouldNotBe null
     }
 
     "등록 완료" {
+        member.detail.activatedAt shouldBe null
+
         member.activate()
 
         member.status shouldBe MemberStatus.ACTIVE
+        member.detail.activatedAt shouldNotBe null
     }
 
     "등록 완료 실패 - PENDING 상태가 아님" {
@@ -40,6 +45,7 @@ class MemberTest : StringSpec({
         member.deactivate()
 
         member.status shouldBe MemberStatus.DEACTIVATED
+        member.detail.deactivatedAt shouldNotBe null
     }
 
     "탈퇴 실패" {

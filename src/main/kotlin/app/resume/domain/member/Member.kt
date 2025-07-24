@@ -2,12 +2,16 @@ package app.resume.domain.member
 
 import app.resume.domain.AbstractEntity
 import app.resume.domain.shared.Email
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
+import jakarta.persistence.OneToOne
 import org.hibernate.annotations.NaturalId
+import java.time.Instant
 
 @Entity
-class Member private constructor(
+class Member(
 
     /** 이메일 **/
     @NaturalId
@@ -22,6 +26,9 @@ class Member private constructor(
 
     /** 회원 상태 **/
     var status: MemberStatus = MemberStatus.PENDING,
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var detail: MemberDetail
 ) : AbstractEntity() {
 
     companion object {
@@ -33,20 +40,23 @@ class Member private constructor(
                 email = Email(registerRequest.email),
                 nickname = registerRequest.nickname,
                 passwordHash = passwordEncoder.encode(registerRequest.password),
+                detail = MemberDetail.create(),
             )
         }
     }
 
-    fun activate() {
+    fun activate(activatedAt: Instant = Instant.now()) {
         check(status == MemberStatus.PENDING) { "PENDING 상태가 아닙니다" }
 
         this.status = MemberStatus.ACTIVE
+        this.detail.activate(activatedAt)
     }
 
-    fun deactivate() {
+    fun deactivate(deactivatedAt: Instant = Instant.now()) {
         check(status == MemberStatus.ACTIVE) { "ACTIVE 상태가 아닙니다" }
 
         this.status = MemberStatus.DEACTIVATED
+        this.detail.deactivate(deactivatedAt)
     }
 
     fun verifyPassword(password: String, passwordEncoder: PasswordEncoder): Boolean {

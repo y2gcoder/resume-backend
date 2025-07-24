@@ -44,14 +44,17 @@
 
 ---
 
+### **회원 애그리거트**
+
 ### 회원(Member)
-_Entity_
+_Aggregate Root_
 #### 속성
 - `id`: `Long`
 - `email`: `Email` 이메일 - Natural ID
 - `nickname`: 닉네임
 - `passwordHash`: 비밀번호(해시)
 - `status`: `MemberStatus`: 회원 상태
+- `detail`: `MemberDetail`: 1:1
 
 #### 행위
 - `register()`: 회원 등록 email, nickname, password, passwordEncoder
@@ -67,6 +70,18 @@ _Entity_
 - 등록 대기 상태에서만 등록 완료할 수 있다
 - 등록 완료 상태에서만 탈퇴할 수 있다
 - 회원의 비밀번호는 해싱해서 저장한다
+
+### 회원 상세(MemberDetail)
+_Entity_
+#### 속성
+- `id`: `Long`
+- `registeredAt`: 등록일시
+- `activatedAt`: 등록 완료 일시
+- `deactivatedAt`: 탈퇴 일시
+#### 행위
+- `create()`: 회원 등록, 현재 시간을 등록 일시로 저장한다
+- `activate()`: 등록 완료와 관련된 작업 수행. 등록 완료 일시를 저장함
+- `deactivate()`: 탈퇴와 관련된 작업을 수행. 탈퇴 일시를 저장함
 
 ### 회원 상태(MemberStatus)
 _Enum_
