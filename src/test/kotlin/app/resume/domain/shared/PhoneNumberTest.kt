@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.shared
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec

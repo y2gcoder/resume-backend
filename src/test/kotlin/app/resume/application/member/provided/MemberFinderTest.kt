@@ -1,7 +1,7 @@
-package app.resume.application.provided
+package app.resume.application.member.provided
 
 import app.resume.ResumeApplicationTestConfiguration
-import app.resume.domain.MemberFixture
+import app.resume.domain.member.MemberFixture
 import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

@@ -1,8 +1,8 @@
-package app.resume.application.required
+package app.resume.application.member.required
 
-import app.resume.domain.Member
-import app.resume.domain.MemberFixture.createMemberRegisterRequest
-import app.resume.domain.MemberFixture.createPasswordEncoder
+import app.resume.domain.member.Member
+import app.resume.domain.member.MemberFixture.createMemberRegisterRequest
+import app.resume.domain.member.MemberFixture.createPasswordEncoder
 import jakarta.persistence.EntityManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy

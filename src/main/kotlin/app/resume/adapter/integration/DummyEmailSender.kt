@@ -1,7 +1,7 @@
 package app.resume.adapter.integration
 
-import app.resume.application.required.EmailSender
-import app.resume.domain.Email
+import app.resume.application.member.required.EmailSender
+import app.resume.domain.shared.Email
 import org.springframework.context.annotation.Fallback
 import org.springframework.stereotype.Component
 

@@ -1,5 +1,7 @@
 package app.resume.domain
 
+import app.resume.domain.member.Member
+
 data class ResumeCreateRequest(
     val writer: Member,
     val title: String,

@@ -1,6 +1,6 @@
-package app.resume.application.provided
+package app.resume.application.member.provided
 
-import app.resume.domain.Member
+import app.resume.domain.member.Member
 
 /**
  * 회원을 조회한다

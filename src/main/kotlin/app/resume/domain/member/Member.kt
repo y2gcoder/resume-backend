@@ -1,5 +1,7 @@
-package app.resume.domain
+package app.resume.domain.member
 
+import app.resume.domain.AbstractEntity
+import app.resume.domain.shared.Email
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import org.hibernate.annotations.NaturalId

@@ -1,7 +1,7 @@
-package app.resume.application.provided
+package app.resume.application.member.provided
 
-import app.resume.domain.Member
-import app.resume.domain.MemberRegisterRequest
+import app.resume.domain.member.Member
+import app.resume.domain.member.MemberRegisterRequest
 import jakarta.validation.Valid
 
 /**

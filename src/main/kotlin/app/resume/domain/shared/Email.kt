@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.shared
 
 import jakarta.persistence.Embeddable
 

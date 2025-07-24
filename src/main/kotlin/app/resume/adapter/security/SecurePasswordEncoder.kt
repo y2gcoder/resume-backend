@@ -1,6 +1,6 @@
 package app.resume.adapter.security
 
-import app.resume.domain.PasswordEncoder
+import app.resume.domain.member.PasswordEncoder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
 

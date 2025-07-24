@@ -1,12 +1,12 @@
-package app.resume.domain
+package app.resume.domain.member
 
 object MemberFixture {
     fun createMemberRegisterRequest(): MemberRegisterRequest {
         return MemberRegisterRequest(
-                "y2gcoder@gmail.com",
-                "문파관작",
-                "bestpassword",
-            )
+            "y2gcoder@gmail.com",
+            "문파관작",
+            "bestpassword",
+        )
     }
 
     fun createPasswordEncoder(): PasswordEncoder {

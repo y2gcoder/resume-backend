@@ -1,8 +1,7 @@
 package app.resume.adapter.integration
 
+import app.resume.domain.shared.Email
 import org.assertj.core.api.Assertions.assertThat
-
-import app.resume.domain.Email
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.StdIo
 import org.junitpioneer.jupiter.StdOut

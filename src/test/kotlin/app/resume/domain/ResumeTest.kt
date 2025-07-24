@@ -1,6 +1,8 @@
 package app.resume.domain
 
-import app.resume.domain.MemberFixture.createMember
+import app.resume.domain.member.MemberFixture.createMember
+import app.resume.domain.shared.Email
+import app.resume.domain.shared.PhoneNumber
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe

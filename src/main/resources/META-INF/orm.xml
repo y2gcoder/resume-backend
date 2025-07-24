@@ -18,7 +18,7 @@
     </mapped-superclass>
 
     <!-- Member Entity -->
-    <entity class="Member">
+    <entity class="app.resume.domain.member.Member">
         <table name="member">
             <unique-constraint name="UK_MEMBER_EMAIL_ADDRESS">
                 <column-name>email_address</column-name>
@@ -40,7 +40,7 @@
     </entity>
 
     <!-- Email Embeddable -->
-    <embeddable class="Email">
+    <embeddable class="app.resume.domain.shared.Email">
         <attributes>
             <basic name="address">
                 <column name="email_address" nullable="false" length="150"/>

@@ -1,10 +1,10 @@
-package app.resume.application.provided
+package app.resume.application.member.provided
 
 import app.resume.ResumeApplicationTestConfiguration
-import app.resume.domain.DuplicateEmailException
-import app.resume.domain.MemberFixture
-import app.resume.domain.MemberRegisterRequest
-import app.resume.domain.MemberStatus
+import app.resume.domain.member.DuplicateEmailException
+import app.resume.domain.member.MemberFixture
+import app.resume.domain.member.MemberRegisterRequest
+import app.resume.domain.member.MemberStatus
 import jakarta.persistence.EntityManager
 import jakarta.validation.ConstraintViolationException
 import org.assertj.core.api.Assertions.assertThat

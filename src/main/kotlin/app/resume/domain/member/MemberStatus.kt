@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.member
 
 enum class MemberStatus {
     PENDING,

@@ -1,14 +1,14 @@
-package app.resume.application
+package app.resume.application.member
 
-import app.resume.application.provided.MemberFinder
-import app.resume.application.provided.MemberRegister
-import app.resume.application.required.EmailSender
-import app.resume.application.required.MemberRepository
-import app.resume.domain.DuplicateEmailException
-import app.resume.domain.Email
-import app.resume.domain.Member
-import app.resume.domain.MemberRegisterRequest
-import app.resume.domain.PasswordEncoder
+import app.resume.application.member.provided.MemberFinder
+import app.resume.application.member.provided.MemberRegister
+import app.resume.application.member.required.EmailSender
+import app.resume.application.member.required.MemberRepository
+import app.resume.domain.member.DuplicateEmailException
+import app.resume.domain.member.Member
+import app.resume.domain.member.MemberRegisterRequest
+import app.resume.domain.member.PasswordEncoder
+import app.resume.domain.shared.Email
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.validation.annotation.Validated

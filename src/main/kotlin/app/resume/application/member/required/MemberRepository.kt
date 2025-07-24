@@ -1,7 +1,7 @@
-package app.resume.application.required
+package app.resume.application.member.required
 
-import app.resume.domain.Email
-import app.resume.domain.Member
+import app.resume.domain.member.Member
+import app.resume.domain.shared.Email
 import org.springframework.data.repository.Repository
 
 interface MemberRepository : Repository<Member, Long> {

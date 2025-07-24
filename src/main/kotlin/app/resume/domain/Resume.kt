@@ -1,5 +1,9 @@
 package app.resume.domain
 
+import app.resume.domain.member.Member
+import app.resume.domain.shared.Email
+import app.resume.domain.shared.PhoneNumber
+
 class Resume private constructor(
     val writer: Member,
     var title: String,

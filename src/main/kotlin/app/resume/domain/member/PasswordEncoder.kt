@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.member
 
 interface PasswordEncoder {
     fun encode(password: String) : String

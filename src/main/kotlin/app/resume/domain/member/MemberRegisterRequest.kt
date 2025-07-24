@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.member
 
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size

@@ -1,9 +1,9 @@
 package app.resume
 
-import app.resume.application.required.EmailSender
-import app.resume.domain.Email
-import app.resume.domain.MemberFixture
-import app.resume.domain.PasswordEncoder
+import app.resume.application.member.required.EmailSender
+import app.resume.domain.member.MemberFixture
+import app.resume.domain.member.PasswordEncoder
+import app.resume.domain.shared.Email
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 

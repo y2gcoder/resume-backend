@@ -1,7 +1,7 @@
-package app.resume.domain
+package app.resume.domain.member
 
-import app.resume.domain.MemberFixture.createMemberRegisterRequest
-import app.resume.domain.MemberFixture.createPasswordEncoder
+import app.resume.domain.member.MemberFixture.createMemberRegisterRequest
+import app.resume.domain.member.MemberFixture.createPasswordEncoder
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
