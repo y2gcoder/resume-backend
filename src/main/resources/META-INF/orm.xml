@@ -62,11 +62,52 @@
         </attributes>
     </entity>
 
+    <!-- Resume Entity -->
+    <entity class="app.resume.domain.resume.Resume">
+        <attributes>
+            <basic name="title">
+                <column nullable="false" length="100"/>
+            </basic>
+            <basic name="name">
+                <column nullable="false" length="100"/>
+            </basic>
+            <basic name="subtitle">
+                <column length="150"/>
+            </basic>
+            <basic name="profileImageUrl">
+                <column column-definition="TEXT"/>
+            </basic>
+            <basic name="bio">
+                <column column-definition="TEXT"/>
+            </basic>
+            <basic name="createdAt">
+                <column nullable="false"/>
+            </basic>
+            <many-to-one name="writer" fetch="LAZY">
+                <join-column name="writer_id"/>
+            </many-to-one>
+            <embedded name="email"/>
+            <embedded name="phoneNumber"/>
+        </attributes>
+    </entity>
+
     <!-- Email Embeddable -->
     <embeddable class="app.resume.domain.shared.Email">
         <attributes>
             <basic name="address">
                 <column name="email_address" nullable="false" length="150"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+    <!-- PhoneNumber Embeddable -->
+    <embeddable class="app.resume.domain.shared.PhoneNumber">
+        <attributes>
+            <basic name="callingCode">
+                <column name="phone_number_calling_code" nullable="false" length="5"/>
+            </basic>
+            <basic name="nationalNumber">
+                <column name="phone_number_national_number" nullable="false" length="20"/>
             </basic>
         </attributes>
     </embeddable>

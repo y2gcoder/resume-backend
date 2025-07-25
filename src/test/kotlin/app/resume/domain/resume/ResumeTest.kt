@@ -1,30 +1,33 @@
-package app.resume.domain
+package app.resume.domain.resume
 
+import app.resume.domain.resume.ResumeFixture.createResumeCreateRequest
 import app.resume.domain.member.MemberFixture.createMember
 import app.resume.domain.shared.Email
 import app.resume.domain.shared.PhoneNumber
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class ResumeTest : StringSpec({
-    val actual = Resume.create(
-        ResumeCreateRequest(
-            createMember(),
-            "title",
-            "문파관작",
-            "y2gcoder@gmail.com",
-            "82",
-            "1012341234",
-        )
-    )
+    val writer = createMember()
+    writer.activate()
+
+    val actual = Resume.create(createResumeCreateRequest(writer))
 
     "이력서 생성" {
-        actual.writer.email shouldBe createMember().email
+        actual.writer.isActive() shouldBe true
         actual.title shouldBe "title"
         actual.name shouldBe "문파관작"
         actual.email shouldBe Email("y2gcoder@gmail.com")
         actual.phoneNumber shouldBe PhoneNumber("82", "1012341234")
+        actual.createdAt shouldNotBe null
+    }
+
+    "이력서 생성 실패 - 회원이 등록 완료 상태가 아님" {
+        val pendingWriter = createMember()
+
+        shouldThrow<IllegalArgumentException> { Resume.create(createResumeCreateRequest(pendingWriter)) }
     }
 
     "소제목 변경" {

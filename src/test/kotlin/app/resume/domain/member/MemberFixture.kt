@@ -1,5 +1,7 @@
 package app.resume.domain.member
 
+import org.springframework.test.util.ReflectionTestUtils
+
 object MemberFixture {
     fun createMemberRegisterRequest(): MemberRegisterRequest {
         return MemberRegisterRequest(
@@ -18,5 +20,11 @@ object MemberFixture {
 
     fun createMember(): Member {
         return Member.register(createMemberRegisterRequest(), createPasswordEncoder())
+    }
+
+    fun createMember(id: Long): Member {
+        val member = Member.register(createMemberRegisterRequest(), createPasswordEncoder())
+        ReflectionTestUtils.setField(member, "id", id)
+        return member
     }
 }

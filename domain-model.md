@@ -35,6 +35,7 @@
     - 자격증 섹션은 회원이 취득한 자격증을 작성할 수 있다
     - 외국어 섹션은 회원이 취득한 외국어 자격증을 작성할 수 있다
     - 자기소개 섹션은 회원이 본 이력서에서 작성할 자기소개를 작성할 수 있다
+  - 이력서는 생성일시를 기록한다
 - 템플릿은 이력서를 보여주는 형식을 말한다
   - 템플릿에 따라 이력서의 각 섹션을 배치하는 방식이 달라진다
   - 회원은 템플릿이 적용된 이력서를 PDF로 만들기 전 미리보기로 확인할 수 있다
@@ -108,6 +109,8 @@ _Value Object_
 
 ---
 
+### **이력서 애그리거트**
+
 ### 이력서(Resume)
 _Entity_
 #### 속성
@@ -119,9 +122,10 @@ _Entity_
 - `subtitle`: 부제
 - `profileImageUrl`: 프로필 이미지 URL
 - `bio`: 한줄 소개
+- `createdAt`: 생성일시
 
 #### 행위
-- `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber
+- `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber. 생성 시 생성일시를 기록한다
 - `updateTitle()`
 - `updateName()`
 - `updateEmail()`
@@ -132,6 +136,7 @@ _Entity_
 
 #### 규칙
 - 이력서를 생성할 때 작성자, 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
+- 이력서를 생성하기 위해서는 회원이 등록 완료한 상태여야 함
 
 ### 휴대폰 번호(PhoneNumber)
 _Value Object_

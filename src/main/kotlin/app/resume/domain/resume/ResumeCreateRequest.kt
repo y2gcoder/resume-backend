@@ -1,4 +1,4 @@
-package app.resume.domain
+package app.resume.domain.resume
 
 import app.resume.domain.member.Member
 

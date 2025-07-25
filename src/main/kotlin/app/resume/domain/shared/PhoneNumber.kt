@@ -1,5 +1,8 @@
 package app.resume.domain.shared
 
+import jakarta.persistence.Embeddable
+
+@Embeddable
 data class PhoneNumber(
     val callingCode: String,
     val nationalNumber: String,
