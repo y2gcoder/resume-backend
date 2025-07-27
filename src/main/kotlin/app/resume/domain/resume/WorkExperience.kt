@@ -1,0 +1,45 @@
+package app.resume.domain.resume
+
+class WorkExperience private constructor(
+    /** 회사명 **/
+    var companyName: String,
+
+    /** 재직기간 **/
+    var workPeriod: WorkPeriod,
+
+    /** 근무 형태 **/
+    var employmentType: EmploymentType,
+
+    /** 직무 **/
+    var role: String,
+
+    /** 직책 **/
+    var position: String,
+
+    /** 주요 성과 **/
+    var achievement: String?,
+) {
+    companion object {
+        fun create(
+            createRequest: WorkExperienceCreateRequest
+        ): WorkExperience {
+            require(createRequest.companyName.isNotBlank())
+            require(createRequest.role.isNotBlank())
+            require(createRequest.position.isNotBlank())
+
+            return WorkExperience(
+                createRequest.companyName,
+                WorkPeriod(
+                    createRequest.startedAt,
+                    createRequest.endedAt,
+                ),
+                createRequest.employmentType,
+                createRequest.role,
+                createRequest.position,
+                createRequest.achievement
+            )
+        }
+    }
+
+    fun isCurrentJob(): Boolean = workPeriod.isOngoing()
+}

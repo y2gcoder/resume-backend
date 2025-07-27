@@ -30,6 +30,10 @@
   - 추가 섹션은 추가하거나 제외할 수 있다
   - 추가 섹션들은 경력, 포트폴리오, 프로젝트, 교육, 대외활동, 자격증, 외국어, 자기소개 섹션들이 있다
     - 경력 섹션은 회원의 경력사항을 작성할 수 있다
+      - 경력은 직장명, 기간, 재직형태, 직무, 직책, 주요 성과를 입력해야 한다.
+      - 재직중인 경력은 기간 중 시작일자만 입력한다
+      - 재직형태는 정규직, 계약직, 인턴, 프리랜서, 개인사업 등이 있다. 
+      - 이력서는 여러 개의 경력을 입력할 수 있다
     - 포트폴리오 섹션은 회원이 진행했던 포트폴리오를 작성할 수 있다
     - 교육 섹션은 회원이 수료하거나 졸업한 교육 활동을 작성할 수 있다
     - 자격증 섹션은 회원이 취득한 자격증을 작성할 수 있다
@@ -112,8 +116,9 @@ _Value Object_
 ### **이력서 애그리거트**
 
 ### 이력서(Resume)
-_Entity_
+_Aggregate Root_
 #### 속성
+- `id`: `Long`
 - `writer`: `Member`, 작성자 
 - `title`: 제목
 - `name`: 이름
@@ -143,6 +148,45 @@ _Value Object_
 #### 속성
 - `callingCode`: 국제 전화 식별 코드
 - `nationalNumber`: 국내 번호
+
+### 경력(WorkExperience)
+_Entity_
+#### 속성
+- `companyName`: 직장명 
+- `workPeriod`: `WorkPeriod`: 재직기간
+- `employmentType`: `EmploymentType`: 재직 형태
+- `role`: 직무
+- `position`: 직책
+- `achievement`: 주요 성과 
+
+#### 행위
+- `create()`: 경력 생성: companyName, startedAt, endedAt, employmentType, role, position, achievement
+- `isCurrentJob()`: 현재 재직중인지 체크
+
+#### 규칙
+- 재직기간 - 종료일시가 없으면 해당 경력은 재직중인 상태임 
+
+### 재직 형태(EmploymentType)
+_Enum_
+#### 상수
+- `FULL_TIME`: 정규직
+- `CONTRACT`: 계약직
+- `INTERN`: 인턴
+- `FREELANCE`: 프리랜서
+- `SELF_EMPLOYED`: 개인사업
+
+### 재직 기간(WorkPeriod)
+_Value Object_
+#### 속성
+- `startedAt`: 시작일시 YYYY-MM
+- `endedAt`: 종료일시 YYYY-MM. 없을 수도 있음
+
+#### 행위
+- `isOngoing`: 현재 기간이 진행중인지 체크
+
+#### 규칙
+- 종료일시는 시작일시와 같거나 미래여야 한다
+- 종료일시가 없으면 현재 진행중인 기간
 
 ---
 
