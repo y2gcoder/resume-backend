@@ -1,10 +1,18 @@
 package app.resume.domain.resume
 
+import app.resume.domain.AbstractEntity
+import jakarta.persistence.Column
+import jakarta.persistence.Embedded
+import jakarta.persistence.Entity
+
+@Entity
 class WorkExperience private constructor(
     /** 회사명 **/
+    @Column(nullable = false, length = 100)
     var companyName: String,
 
     /** 재직기간 **/
+    @Embedded
     var workPeriod: WorkPeriod,
 
     /** 근무 형태 **/
@@ -18,7 +26,7 @@ class WorkExperience private constructor(
 
     /** 주요 성과 **/
     var achievement: String?,
-) {
+) : AbstractEntity() {
     companion object {
         fun create(
             createRequest: WorkExperienceCreateRequest

@@ -128,6 +128,7 @@ _Aggregate Root_
 - `profileImageUrl`: 프로필 이미지 URL
 - `bio`: 한줄 소개
 - `createdAt`: 생성일시
+- `workExperiences`: `MutableList<WorkExperience>`: 경력 리스트
 
 #### 행위
 - `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber. 생성 시 생성일시를 기록한다
@@ -138,6 +139,7 @@ _Aggregate Root_
 - `updateSubtitle()`
 - `updateProfileImageUrl()`
 - `updateBio()`
+- `addWorkExperience()`: 경력 추가
 
 #### 규칙
 - 이력서를 생성할 때 작성자, 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
@@ -182,7 +184,7 @@ _Value Object_
 - `endedAt`: 종료일시 YYYY-MM. 없을 수도 있음
 
 #### 행위
-- `isOngoing`: 현재 기간이 진행중인지 체크
+- `isOngoing()`: 현재 기간이 진행중인지 체크
 
 #### 규칙
 - 종료일시는 시작일시와 같거나 미래여야 한다

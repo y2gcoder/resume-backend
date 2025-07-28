@@ -86,8 +86,37 @@
             <many-to-one name="writer" fetch="LAZY">
                 <join-column name="writer_id"/>
             </many-to-one>
+            <one-to-many name="workExperiences" fetch="LAZY">
+                <join-column name="resume_id"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
             <embedded name="email"/>
             <embedded name="phoneNumber"/>
+        </attributes>
+    </entity>
+
+    <!-- WorkExperience Entity -->
+    <entity class="app.resume.domain.resume.WorkExperience">
+        <attributes>
+            <basic name="companyName">
+                <column nullable="false" length="100"/>
+            </basic>
+            <basic name="employmentType">
+                <column nullable="false" length="20"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="role">
+                <column nullable="false" length="50"/>
+            </basic>
+            <basic name="position">
+                <column nullable="false" length="50"/>
+            </basic>
+            <basic name="achievement">
+                <column column-definition="TEXT"/>
+            </basic>
+            <embedded name="workPeriod"/>
         </attributes>
     </entity>
 
@@ -108,6 +137,18 @@
             </basic>
             <basic name="nationalNumber">
                 <column name="phone_number_national_number" nullable="false" length="20"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+    <!-- WorkPeriod Embeddable -->
+    <embeddable class="app.resume.domain.resume.WorkPeriod">
+        <attributes>
+            <basic name="startedAt">
+                <column name="work_period_started_at" nullable="false" column-definition="VARCHAR(7)"/>
+            </basic>
+            <basic name="endedAt">
+                <column name="work_period_ended_at" column-definition="VARCHAR(7)"/>
             </basic>
         </attributes>
     </embeddable>

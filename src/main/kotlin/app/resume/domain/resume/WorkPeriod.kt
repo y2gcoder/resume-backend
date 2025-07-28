@@ -1,7 +1,9 @@
 package app.resume.domain.resume
 
+import jakarta.persistence.Embeddable
 import java.time.YearMonth
 
+@Embeddable
 data class WorkPeriod(
     val startedAt: YearMonth,
     val endedAt: YearMonth? = null,

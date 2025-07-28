@@ -1,5 +1,6 @@
 package app.resume.domain.resume
 
+import app.resume.domain.resume.ResumeFixture.createWorkExperienceRequest
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -7,15 +8,7 @@ import java.time.YearMonth
 
 class WorkExperienceTest : StringSpec({
     val workExperience = WorkExperience.create(
-        WorkExperienceCreateRequest(
-            "레쥬미",
-            YearMonth.of(2025, 7),
-            null,
-            EmploymentType.FULL_TIME,
-            "백엔드 엔지니어",
-            "개발자",
-            "레쥬미 백엔드 개발함"
-        ),
+        createWorkExperienceRequest(),
     )
 
     "이력서 생성" {

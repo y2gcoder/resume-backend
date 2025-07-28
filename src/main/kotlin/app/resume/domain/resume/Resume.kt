@@ -4,11 +4,13 @@ import app.resume.domain.AbstractEntity
 import app.resume.domain.member.Member
 import app.resume.domain.shared.Email
 import app.resume.domain.shared.PhoneNumber
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import java.time.Instant
 
 @Entity
@@ -45,6 +47,10 @@ class Resume private constructor(
     /** 작성일시 **/
     val createdAt: Instant = Instant.now(),
 ) : AbstractEntity() {
+    /** 경력 **/
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val workExperiences: MutableList<WorkExperience> = mutableListOf()
+
     companion object {
         fun create(
             createRequest: ResumeCreateRequest
@@ -92,5 +98,9 @@ class Resume private constructor(
 
     fun updateBio(bio: String?) {
         this.bio = bio
+    }
+
+    fun addWorkExperience(workExperienceCreateRequest: WorkExperienceCreateRequest) {
+        workExperiences.add(WorkExperience.create(workExperienceCreateRequest))
     }
 }
