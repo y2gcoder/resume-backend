@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Import
 @SpringBootTest
 @Transactional
 @Import(ResumeApplicationTestConfiguration::class)
-class ResumeCreatorTest(
+class ResumeWriterTest(
     val memberRegister: MemberRegister,
-    val resumeCreator: ResumeCreator,
+    val resumeWriter: ResumeWriter,
     val entityManager: EntityManager,
 ) {
 
@@ -29,7 +29,7 @@ class ResumeCreatorTest(
 
         val createRequest = createResumeCreateRequest()
 
-        val resume = resumeCreator.create(writer.id, createRequest)
+        val resume = resumeWriter.create(writer.id, createRequest)
 
         Assertions.assertThat(resume.id).isNotNull()
         Assertions.assertThat(resume.writer).isEqualTo(writer)

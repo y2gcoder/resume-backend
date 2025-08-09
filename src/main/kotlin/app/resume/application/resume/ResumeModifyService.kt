@@ -1,7 +1,7 @@
 package app.resume.application.resume
 
 import app.resume.application.member.provided.MemberFinder
-import app.resume.application.resume.provided.ResumeCreator
+import app.resume.application.resume.provided.ResumeWriter
 import app.resume.application.resume.required.ResumeRepository
 import app.resume.domain.resume.Resume
 import app.resume.domain.resume.ResumeCreateRequest
@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated
 class ResumeModifyService(
     private val memberFinder: MemberFinder,
     private val resumeRepository: ResumeRepository,
-) : ResumeCreator {
+) : ResumeWriter {
 
     override fun create(
         writerId: Long,

@@ -17,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional
 class ResumeFinderTest(
     val resumeFinder: ResumeFinder,
     val memberRegister: MemberRegister,
-    val resumeCreator: ResumeCreator,
+    val resumeWriter: ResumeWriter,
     val entityManager: EntityManager,
 ) {
     @Test
     fun find() {
         val writer = memberRegister.register(MemberFixture.createMemberRegisterRequest())
         memberRegister.activate(writer.id)
-        val resume = resumeCreator.create(writer.id, createResumeCreateRequest())
+        val resume = resumeWriter.create(writer.id, createResumeCreateRequest())
         entityManager.flush()
         entityManager.clear()
 
