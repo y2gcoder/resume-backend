@@ -116,7 +116,7 @@
             <basic name="achievement">
                 <column column-definition="TEXT"/>
             </basic>
-            <embedded name="workPeriod"/>
+            <embedded name="period"/>
         </attributes>
     </entity>
 
@@ -142,13 +142,13 @@
     </embeddable>
 
     <!-- WorkPeriod Embeddable -->
-    <embeddable class="app.resume.domain.resume.WorkPeriod">
+    <embeddable class="app.resume.domain.resume.Period">
         <attributes>
             <basic name="startedAt">
-                <column name="work_period_started_at" nullable="false" column-definition="VARCHAR(7)"/>
+                <column name="period_started_at" nullable="false" column-definition="VARCHAR(7)"/>
             </basic>
             <basic name="endedAt">
-                <column name="work_period_ended_at" column-definition="VARCHAR(7)"/>
+                <column name="period_ended_at" column-definition="VARCHAR(7)"/>
             </basic>
         </attributes>
     </embeddable>

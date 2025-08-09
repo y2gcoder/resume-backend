@@ -13,8 +13,8 @@ class WorkExperienceTest : StringSpec({
 
     "경력 생성" {
         workExperience.companyName shouldBe "레쥬미"
-        workExperience.workPeriod.startedAt shouldBe YearMonth.of(2025, 7)
-        workExperience.workPeriod.endedAt shouldBe null
+        workExperience.period.startedAt shouldBe YearMonth.of(2025, 7)
+        workExperience.period.endedAt shouldBe null
         workExperience.employmentType shouldBe EmploymentType.FULL_TIME
         workExperience.role shouldBe "백엔드 엔지니어"
         workExperience.position shouldBe "개발자"

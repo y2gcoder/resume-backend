@@ -126,8 +126,8 @@ class ResumeTest : StringSpec({
 
         resume.workExperiences shouldHaveSize 1
         resume.workExperiences[0].companyName shouldBe "레쥬미"
-        resume.workExperiences[0].workPeriod.startedAt shouldBe YearMonth.of(2025, 7)
-        resume.workExperiences[0].workPeriod.endedAt shouldBe null
+        resume.workExperiences[0].period.startedAt shouldBe YearMonth.of(2025, 7)
+        resume.workExperiences[0].period.endedAt shouldBe null
         resume.workExperiences[0].employmentType shouldBe EmploymentType.FULL_TIME
         resume.workExperiences[0].role shouldBe "백엔드 엔지니어"
         resume.workExperiences[0].position shouldBe "개발자"

@@ -4,7 +4,7 @@ import jakarta.persistence.Embeddable
 import java.time.YearMonth
 
 @Embeddable
-data class WorkPeriod(
+data class Period(
     val startedAt: YearMonth,
     val endedAt: YearMonth? = null,
 ) {

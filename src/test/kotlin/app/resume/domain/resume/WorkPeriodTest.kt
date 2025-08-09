@@ -8,7 +8,7 @@ import java.time.YearMonth
 class WorkPeriodTest : StringSpec({
 
     "재직기간 생성" {
-        val workPeriod = WorkPeriod(
+        val workPeriod = Period(
             startedAt = YearMonth.of(2024, 7),
             endedAt = YearMonth.of(2024, 7),
         )
@@ -19,7 +19,7 @@ class WorkPeriodTest : StringSpec({
     }
 
     "재직기간 생성 - 진행중" {
-        val workPeriod = WorkPeriod(
+        val workPeriod = Period(
             startedAt = YearMonth.of(2025, 7),
         )
 
@@ -29,7 +29,7 @@ class WorkPeriodTest : StringSpec({
 
     "재직기간 생성 실패 - 시작일시가 종료일시보다 미래" {
         shouldThrow<IllegalArgumentException> {
-            WorkPeriod(
+            Period(
                 startedAt = YearMonth.of(2025, 7),
                 endedAt = YearMonth.of(2025, 6),
             )

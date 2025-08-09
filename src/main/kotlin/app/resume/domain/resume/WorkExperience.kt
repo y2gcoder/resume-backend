@@ -13,7 +13,7 @@ class WorkExperience private constructor(
 
     /** 재직기간 **/
     @Embedded
-    var workPeriod: WorkPeriod,
+    var period: Period,
 
     /** 근무 형태 **/
     var employmentType: EmploymentType,
@@ -37,7 +37,7 @@ class WorkExperience private constructor(
 
             return WorkExperience(
                 createRequest.companyName,
-                WorkPeriod(
+                Period(
                     createRequest.startedAt,
                     createRequest.endedAt,
                 ),
@@ -49,5 +49,5 @@ class WorkExperience private constructor(
         }
     }
 
-    fun isCurrentJob(): Boolean = workPeriod.isOngoing()
+    fun isCurrentJob(): Boolean = period.isOngoing()
 }
