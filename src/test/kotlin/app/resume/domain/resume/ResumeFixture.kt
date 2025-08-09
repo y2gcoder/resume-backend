@@ -1,6 +1,7 @@
 package app.resume.domain.resume
 
 import app.resume.domain.member.Member
+import java.time.Instant
 import java.time.YearMonth
 
 object ResumeFixture {
@@ -31,5 +32,31 @@ object ResumeFixture {
         "백엔드 엔지니어",
         "개발자",
         "레쥬미 백엔드 개발함"
+    )
+
+    fun createPortfolioCreateRequest(): PortfolioCreateRequest = PortfolioCreateRequest(
+        links = createLinkItemCreateRequests(),
+        attachments = createAttachmentItemRequests(),
+    )
+
+    fun createAttachmentItemRequests(): List<AttachmentItemCreateRequest> = listOf(
+        AttachmentItemCreateRequest(
+            "fileKey",
+            "my-project",
+            "application/pdf",
+            2048,
+            Instant.now(),
+        ),
+    )
+
+    fun createLinkItemCreateRequests(): List<LinkItemCreateRequest> = listOf(
+        LinkItemCreateRequest(
+            "https://github.com/y2gcoder",
+            "깃헙"
+        ),
+        LinkItemCreateRequest(
+            "https://resume.me",
+            "레쥬미"
+        )
     )
 }

@@ -11,7 +11,7 @@ class WorkExperienceTest : StringSpec({
         createWorkExperienceRequest(),
     )
 
-    "이력서 생성" {
+    "경력 생성" {
         workExperience.companyName shouldBe "레쥬미"
         workExperience.workPeriod.startedAt shouldBe YearMonth.of(2025, 7)
         workExperience.workPeriod.endedAt shouldBe null

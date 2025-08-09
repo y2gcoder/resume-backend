@@ -11,9 +11,15 @@ import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
+import jakarta.persistence.OneToOne
+import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import java.time.Instant
 
 @Entity
+@Table(uniqueConstraints = [
+    UniqueConstraint(name = "UK_PORTFOLIO_ID", columnNames = ["portfolio_id"])
+])
 class Resume private constructor(
 
     /** 작성자 **/
@@ -50,6 +56,10 @@ class Resume private constructor(
     /** 경력 **/
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val workExperiences: MutableList<WorkExperience> = mutableListOf()
+
+    /** 포트폴리오 **/
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var portfolio: Portfolio? = null
 
     companion object {
         fun create(
@@ -102,5 +112,19 @@ class Resume private constructor(
 
     fun addWorkExperience(workExperienceCreateRequest: WorkExperienceCreateRequest) {
         workExperiences.add(WorkExperience.create(workExperienceCreateRequest))
+    }
+
+    fun createPortfolio(portfolioCreateRequest: PortfolioCreateRequest) {
+        this.portfolio = Portfolio.create(portfolioCreateRequest)
+    }
+
+    fun updatePortfolioLinks(linkItemCreateRequests: List<LinkItemCreateRequest>) {
+        check(this.portfolio != null)
+        this.portfolio?.replaceLinks(linkItemCreateRequests)
+    }
+
+    fun updatePortfolioAttachments(attachmentItemCreateRequests: List<AttachmentItemCreateRequest>) {
+        check(this.portfolio != null)
+        this.portfolio?.replaceAttachments(attachmentItemCreateRequests)
     }
 }

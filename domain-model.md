@@ -35,6 +35,10 @@
       - 재직형태는 정규직, 계약직, 인턴, 프리랜서, 개인사업 등이 있다. 
       - 이력서는 여러 개의 경력을 입력할 수 있다
     - 포트폴리오 섹션은 회원이 진행했던 포트폴리오를 작성할 수 있다
+      - 포트폴리오는 링크 섹션과 첨부파일 섹션으로 나뉜다
+      - 링크 섹션은 포트폴리오 URL과 해당 포트폴리오 URL에 대한 간단한 설명이 포함된다
+      - 첨부파일 섹션은 첨부파일을 업로드할 수 있다
+      - 첨부파일은 다운로드할 수 있다
     - 교육 섹션은 회원이 수료하거나 졸업한 교육 활동을 작성할 수 있다
     - 자격증 섹션은 회원이 취득한 자격증을 작성할 수 있다
     - 외국어 섹션은 회원이 취득한 외국어 자격증을 작성할 수 있다
@@ -128,10 +132,11 @@ _Aggregate Root_
 - `profileImageUrl`: 프로필 이미지 URL
 - `bio`: 한줄 소개
 - `createdAt`: 생성일시
-- `workExperiences`: `MutableList<WorkExperience>`: 경력 리스트
+- `workExperiences`: `MutableList<WorkExperience>`: 경력 섹션
+- `portfolio`: `Portfolio`: 포트폴리오 섹션
 
 #### 행위
-- `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber. 생성 시 생성일시를 기록한다
+- `create()`: 이력서 생성: writer, title, name, email, callingCode, nationalNumber. 생성 시 생성일시를 기록한다.
 - `updateTitle()`
 - `updateName()`
 - `updateEmail()`
@@ -140,10 +145,15 @@ _Aggregate Root_
 - `updateProfileImageUrl()`
 - `updateBio()`
 - `addWorkExperience()`: 경력 추가
+- `createPortfolio()`: 포트폴리오 생성
+- `updatePortfolioLinks()`: 포트폴리오 링크 아이템 목록 업데이트
+- `updatePortfolioAttachments()`: 포트폴리오 첨부파일 아이템 목록 업데이트
 
 #### 규칙
 - 이력서를 생성할 때 작성자, 제목, 이름, 이메일, 국제 전화 식별 코드, 국내 번호는 필수
 - 이력서를 생성하기 위해서는 회원이 등록 완료한 상태여야 함
+- 이력서를 생성했을 때 포트폴리오 섹션이 존재하지 않을 수도 있다
+- 포트폴리오는 내부에 빈 값으로 생성할 수 있다
 
 ### 휴대폰 번호(PhoneNumber)
 _Value Object_
@@ -154,6 +164,7 @@ _Value Object_
 ### 경력(WorkExperience)
 _Entity_
 #### 속성
+- `id`: `Long`
 - `companyName`: 직장명 
 - `workPeriod`: `WorkPeriod`: 재직기간
 - `employmentType`: `EmploymentType`: 재직 형태
@@ -189,6 +200,39 @@ _Value Object_
 #### 규칙
 - 종료일시는 시작일시와 같거나 미래여야 한다
 - 종료일시가 없으면 현재 진행중인 기간
+
+### 포트폴리오(Portfolio)
+_Entity_
+#### 속성
+- `id`: `Long`
+- `links`: `MutableList<LinkItem>`: 링크 아이템 목록
+- `attachments`: `MutableList<AttachmentItem>`: 첨부파일 아이템 목록
+#### 행위
+- `create()`: 포트폴리오 생성: links, attachments
+- `replaceLinks()` 링크 목록 교체
+- `replaceAttachments()` 첨부파일 목록 교체
+#### 규칙
+- 이력서에서 생성할 때 포트폴리오의 내부 각 목록들은 비어있을 수 있다
+- 링크 아이템 목록은 항상 전체를 교체한다
+- 첨부파일 아이템 목록은 항상 전체를 교체한다
+
+### 링크 아이템(LinkItem)
+_Value Object_
+#### 속성
+- `url`: 링크 URL
+- `description`: 링크에 대한 설명
+
+#### 행위
+
+### 첨부파일 아이템(AttachmentItem)
+_Value Object_
+#### 속성
+- `fileKey`: 파일 식별자. 파일 다운로드 를 하기 위함
+- `filename`: 파일명
+- `contentType`: MIME 타입
+- `fileSize`: 파일 크키(bytes)
+- `uploadedAt`: 파일 업로드 일시
+#### 행위
 
 ---
 
