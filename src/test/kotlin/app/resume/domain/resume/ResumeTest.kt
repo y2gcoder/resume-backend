@@ -23,7 +23,7 @@ class ResumeTest : StringSpec({
     beforeEach {
         writer = createMember()
         writer.activate()
-        resume = Resume.create(createResumeCreateRequest(writer))
+        resume = Resume.create(writer, createResumeCreateRequest())
     }
 
     "이력서 생성" {
@@ -38,7 +38,7 @@ class ResumeTest : StringSpec({
     "이력서 생성 실패 - 회원이 등록 완료 상태가 아님" {
         val pendingWriter = createMember()
 
-        shouldThrow<IllegalArgumentException> { Resume.create(createResumeCreateRequest(pendingWriter)) }
+        shouldThrow<IllegalArgumentException> { Resume.create(pendingWriter, createResumeCreateRequest()) }
     }
 
     "소제목 변경" {

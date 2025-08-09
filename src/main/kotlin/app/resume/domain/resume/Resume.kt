@@ -63,14 +63,15 @@ class Resume private constructor(
 
     companion object {
         fun create(
-            createRequest: ResumeCreateRequest
+            writer: Member,
+            createRequest: ResumeCreateRequest,
         ): Resume {
             require(!createRequest.title.isBlank()) { "title can't be blank" }
             require(!createRequest.name.isBlank()) { "name can't be blank" }
-            require(createRequest.writer.isActive()) { "이력서는 활성화된 회원만 작성할 수 있습니다" }
+            require(writer.isActive()) { "이력서는 활성화된 회원만 작성할 수 있습니다" }
 
             return Resume(
-                createRequest.writer,
+                writer,
                 createRequest.title,
                 createRequest.name,
                 Email(createRequest.email),

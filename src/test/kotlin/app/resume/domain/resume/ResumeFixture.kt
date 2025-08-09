@@ -1,12 +1,10 @@
 package app.resume.domain.resume
 
-import app.resume.domain.member.Member
 import java.time.Instant
 import java.time.YearMonth
 
 object ResumeFixture {
-    fun createResumeCreateRequest(writer: Member): ResumeCreateRequest = ResumeCreateRequest(
-        writer,
+    fun createResumeCreateRequest(): ResumeCreateRequest = ResumeCreateRequest(
         "title",
         "문파관작",
         "y2gcoder@gmail.com",

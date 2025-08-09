@@ -29,7 +29,7 @@ class ResumeRepositoryTest {
         writer.activate()
         memberRepository.save(writer)
         
-        val resume = Resume.create(createResumeCreateRequest(writer))
+        val resume = Resume.create(writer, createResumeCreateRequest())
 
         assertThat(resume.id).isEqualTo(0L)
 
