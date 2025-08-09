@@ -1,13 +1,14 @@
 package app.resume.domain.resume
 
+import jakarta.validation.constraints.NotBlank
 import java.time.YearMonth
 
 data class WorkExperienceCreateRequest(
-    val companyName: String,
+    @field:NotBlank val companyName: String,
     val startedAt: YearMonth,
     val endedAt: YearMonth? = null,
     val employmentType: EmploymentType,
-    val role: String,
-    val position: String,
+    @field:NotBlank val role: String,
+    @field:NotBlank val position: String,
     val achievement: String? = null,
 )
